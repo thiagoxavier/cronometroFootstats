@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    .topMargin {
+      margin-top: 5px;
+    }
+
+    .bottomMargin {
+      padding-bottom: 15px;
+    }
+
+    .myButton {
+      box-shadow: inset 0px 1px 0px 0px #efdcfb;
+      background: linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+      background-color: #dfbdfa;
+      border-radius: 6px;
+      border: 1px solid #c584f3;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .myButton:hover {
+      background: linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
+      background-color: #bc80ea;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+  </style>
+</head>
+
+<script>
+  var intervalo;
+
+  function tempo(op) {
+    if (op == 1) {
+      document.getElementById('parar').style.display = "block";
+      document.getElementById('comeca').style.display = "none";
+    }
+    var s = 1;
+    var m = 0;
+    var h = 0;
+    intervalo = window.setInterval(function () {
+      if (s == 60) { m++; s = 0; }
+      if (m == 60) { h++; s = 0; m = 0; }
+      if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h"; else document.getElementById("hora").innerHTML = h + "h";
+      if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s"; else document.getElementById("segundo").innerHTML = s + "s";
+      if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m"; else document.getElementById("minuto").innerHTML = m + "m";
+      s++;
+    }, 1000);
+  }
+  //window.onload=tempo;
+
+  function changeClassButton(button, typeClass){
+    $(".btn").removeClass("btn-primary");
+    $(".btn").removeClass("btn-dark");
+    $(".btn").removeClass("btn-info");
+    $(".btn").removeClass("btn-warning");
+    $(".btn").removeClass("btn-success");
+    $(".btn").removeClass("btn-danger");
+
+    $(".btnPrimary").addClass("btn-outline-primary");
+    $(".btnDark").addClass("btn-outline-dark");
+    $(".btnInfo").addClass("btn-outline-info");
+    $(".btnWarning").addClass("btn-outline-warning");
+    $(".btnSuccess").addClass("btn-outline-success");
+    $(".btnDanger").addClass("btn-outline-danger");
+
+    $(button).addClass("btn-" + typeClass);
+    $(button).removeClass("btn-outline-"+ typeClass);
+  }
+</script>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center">
+      Tempo de jogo <span id="hora">00h</span><span id="minuto">00m</span><span id="segundo">00s</span><br>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-6" style="border:1px solid gray">
+        <p> Parada com o São Paulo</p>
+        <button type="button" onclick="changeClassButton(this, 'primary')" class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
+        <div class="topMargin">
+          <button type="button"  onclick="changeClassButton(this, 'dark')" class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+        </div>
+        <div class="topMargin">
+          <button type="button" onclick="changeClassButton(this, 'info')" class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+        </div>
+        <div class="topMargin bottomMargin">
+          <button type="button" onclick="changeClassButton(this, 'warning')" class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+        </div>
+      </div>
+      <div class="col-6" style="border:1px solid gray">
+        <p> Bola parada com Palmeiras</p>
+        <button type="button" onclick="changeClassButton(this, 'primary')" class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
+        <div class="topMargin">
+          <button type="button"  onclick="changeClassButton(this, 'dark')" class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+        </div>
+        <div class="topMargin">
+          <button type="button" onclick="changeClassButton(this, 'info')" class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+        </div>
+        <div class="topMargin bottomMargin">
+          <button type="button" onclick="changeClassButton(this, 'warning')" class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-12 text-center">
+          <div class="topMargin">
+            <button type="button" onclick="changeClassButton(this, 'danger')" class="btn btnDanger btn-outline-danger btn-sm">Jogo parado</button> 
+            <button type="button" onclick="changeClassButton(this, 'success')" class="btn btnSuccess btn-outline-success btn-sm">Bola rolando</button>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+
+</html>
