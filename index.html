@@ -39,6 +39,30 @@
       position: relative;
       top: 1px;
     }
+
+    .btn-outline-substituition {
+      color: #b23cfd;
+      border-color: #b23cfd;
+    }
+
+    .btn-outline-substituition:hover {
+      background-color: #b23cfd;
+      color: white
+    }
+
+    .btn-outline-lateral {
+      color: #b708c4;
+      border-color: #b708c4;
+    }
+
+    .btn-outline-lateral:hover {
+      background-color: #b708c4;
+      color: white
+    }
+
+    .btn{
+      width:100px;
+    }
   </style>
 </head>
 
@@ -64,7 +88,7 @@
   }
   //window.onload=tempo;
 
-  function changeClassButton(button, typeClass){
+  function changeClassButton(button, typeClass) {
     $(".btn").removeClass("btn-primary");
     $(".btn").removeClass("btn-dark");
     $(".btn").removeClass("btn-info");
@@ -80,7 +104,7 @@
     $(".btnDanger").addClass("btn-outline-danger");
 
     $(button).addClass("btn-" + typeClass);
-    $(button).removeClass("btn-outline-"+ typeClass);
+    $(button).removeClass("btn-outline-" + typeClass);
   }
 </script>
 
@@ -88,45 +112,68 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 text-center">
-      Tempo de jogo <span id="hora">00h</span><span id="minuto">00m</span><span id="segundo">00s</span><br>
+        Tempo de jogo <span id="hora">00h</span><span id="minuto">00m</span><span id="segundo">00s</span><br>
       </div>
     </div>
     <div class="row ">
       <div class="col-6" style="border:1px solid gray">
         <p> Parada com o São Paulo</p>
-        <button type="button" onclick="changeClassButton(this, 'primary')" class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
-        <div class="topMargin">
-          <button type="button"  onclick="changeClassButton(this, 'dark')" class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+        <button  type="button" onclick="changeClassButton(this, 'primary')"
+          class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
+       
+        
+          <div class="topMargin">
+          <button type="button" onclick="changeClassButton(this, 'dark')"
+            class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" class="btn btn-outline-info btn-outline-lateral btn-sm"> Lateral </button>
         </div>
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'info')" class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+          <button type="button" class="btn btn-sm btn-outline-primary">Pênalti</button>
+        </div>
+        <div class="topMargin">
+          <button type="button" onclick="changeClassButton(this, 'info')"
+            class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" class="btn btn-outline-substituition btn-sm"> Substituição </button>
         </div>
         <div class="topMargin bottomMargin">
-          <button type="button" onclick="changeClassButton(this, 'warning')" class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+          <button type="button" onclick="changeClassButton(this, 'warning')"
+            class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
         </div>
+
+     
+
       </div>
       <div class="col-6" style="border:1px solid gray">
         <p> Bola parada com Palmeiras</p>
-        <button type="button" onclick="changeClassButton(this, 'primary')" class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
+        <button type="button" onclick="changeClassButton(this, 'primary')"
+          class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
         <div class="topMargin">
-          <button type="button"  onclick="changeClassButton(this, 'dark')" class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+          <button type="button" onclick="changeClassButton(this, 'dark')"
+            class="btn btnDark btn-outline-dark btn-sm">Falta</button>
         </div>
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'info')" class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+          <button type="button" onclick="changeClassButton(this, 'info')"
+            class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
         </div>
         <div class="topMargin bottomMargin">
-          <button type="button" onclick="changeClassButton(this, 'warning')" class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+          <button type="button" onclick="changeClassButton(this, 'warning')"
+            class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-12 text-center">
-          <div class="topMargin">
-            <button type="button" onclick="changeClassButton(this, 'danger')" class="btn btnDanger btn-outline-danger btn-sm">Jogo parado</button> 
-            <button type="button" onclick="changeClassButton(this, 'success')" class="btn btnSuccess btn-outline-success btn-sm">Bola rolando</button>
-          </div>
+        <div class="topMargin">
+          <button type="button" onclick="changeClassButton(this, 'danger')"
+            class="btn btnDanger btn-outline-danger btn-sm">Jogo parado</button>
+          <button type="button" onclick="changeClassButton(this, 'success')"
+            class="btn btnSuccess btn-outline-success btn-sm">Bola rolando</button>
+        </div>
       </div>
-      
     </div>
   </div>
 </body>
