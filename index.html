@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <style>
     .topMargin {
-      margin-top: 5px;
+      margin-top: 15px;
     }
 
     .bottomMargin {
@@ -365,80 +365,80 @@
         Cronometro <span id="minuto">00m</span><span id="segundo">00s</span><br>
       </div>
       <div class="col-6">
-        <input type="button" onclick="changeGameTime()" id="btnTempo" class="btn  btn-sm " value="" />
+        <input type="button" onclick="changeGameTime()" id="btnTempo" class="btn  " value="" />
       </div>
     </div>
     <div class="row topMargin">
       <div class="col-6 text-center" style="border:1px solid gray">
         <p> Parada com o São Paulo</p>
         <button id="var-1007" type="button" onclick="tempo(this, 'primary', 1007, 1,true)"
-          class="btn btnSkill btnPrimary btn-outline-primary btn-sm ">VAR</button>
+          class="btn btnSkill btnPrimary btn-outline-primary ">VAR</button>
         <div class="topMargin">
           <button type="button" id="falta-1007" onclick="tempo(this, 'dark', 1007, 2,true)"
-            class="btn btnSkill btnDark btn-outline-dark btn-sm">Falta</button>
+            class="btn btnSkill btnDark btn-outline-dark ">Falta</button>
         </div>
         <div class="topMargin ">
           <button type="button" id="lateral-1007" onclick="tempo(this, 'lateral', 1007, 3,true)"
-            class="btn btnSkill btnLateral btn-outline-lateral btn-sm">
+            class="btn btnSkill btnLateral btn-outline-lateral ">
             Lateral
           </button>
         </div>
         <div class="topMargin">
           <button type="button" id="penalti-1007" onclick="tempo(this, 'penalti', 1007, 4,true)"
-            class="btn btnSkill btn-sm btnPenalti btn-outline-penalti">Pênalti</button>
+            class="btn btnSkill btnPenalti btn-outline-penalti">Pênalti</button>
         </div>
         <div class="topMargin">
           <button type="button" id="info-1007" onclick="tempo(this, 'info', 1007, 5,true)"
-            class="btn btnSkill btn-outline-info btnInfo btn-sm">Escanteio</button>
+            class="btn btnSkill btn-outline-info btnInfo ">Escanteio</button>
         </div>
         <div class="topMargin ">
           <button type="button" id="substituicao-1007" onclick="tempo(this, 'substituicao', 1007, 6,true)"
-            class="btn btnSkill btn-outline-substituicao btnSubstituicao btn-sm"> Substituição </button>
+            class="btn btnSkill btn-outline-substituicao btnSubstituicao "> Substituição </button>
         </div>
         <div class="topMargin ">
           <button type="button" id="gol-1007" onclick="tempo(this, 'gol', 1007, 7,true)"
-            class="btn btnSkill btn-outline-gol btnGol btn-sm"> Gol
+            class="btn btnSkill btn-outline-gol btnGol "> Gol
           </button>
         </div>
         <div class="topMargin bottomMargin">
           <button type="button" id="warning-1007" onclick="tempo(this, 'warning', 1007, 8,true)"
-            class="btn btnSkill btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+            class="btn btnSkill btn-outline-warning btnWarning ">Tiro de meta</button>
         </div>
       </div>
       <div class="col-6 text-center" style="border:1px solid gray">
         <p> Parada com o Palmeiras</p>
         <button id="var-1012" type="button" onclick="tempo(this, 'primary', 1012, 1,true)"
-          class="btn btnSkill btnPrimary btn-outline-primary btn-sm ">VAR</button>
+          class="btn btnSkill btnPrimary btn-outline-primary ">VAR</button>
         <div class="topMargin">
           <button type="button" id="falta-1012" onclick="tempo(this, 'dark', 1012, 2,true)"
-            class="btn btnSkill btnDark btn-outline-dark btn-sm">Falta</button>
+            class="btn btnSkill btnDark btn-outline-dark ">Falta</button>
         </div>
         <div class="topMargin ">
           <button type="button" id="lateral-1012" onclick="tempo(this, 'lateral', 1012, 3,true)"
-            class="btn btnSkill btnLateral btn-outline-lateral btn-sm">
+            class="btn btnSkill btnLateral btn-outline-lateral ">
             Lateral
           </button>
         </div>
         <div class="topMargin">
           <button type="button" id="penalti-1012" onclick="tempo(this, 'penalti', 1012, 4,true)"
-            class="btn btnSkill btn-sm btnPenalti btn-outline-penalti">Pênalti</button>
+            class="btn btnSkill btnPenalti btn-outline-penalti">Pênalti</button>
         </div>
         <div class="topMargin">
           <button type="button" id="info-1012" onclick="tempo(this, 'info', 1012, 5,true)"
-            class="btn btnSkill btn-outline-info btnInfo btn-sm">Escanteio</button>
+            class="btn btnSkill btn-outline-info btnInfo ">Escanteio</button>
         </div>
         <div class="topMargin ">
           <button type="button" id="substituicao-1012" onclick="tempo(this, 'substituicao', 1012, 6,true)"
-            class="btn btnSkill btn-outline-substituicao btnSubstituicao btn-sm"> Substituição </button>
+            class="btn btnSkill btn-outline-substituicao btnSubstituicao "> Substituição </button>
         </div>
         <div class="topMargin ">
           <button type="button" id="gol-1012" onclick="tempo(this, 'gol', 1012, 7,true)"
-            class="btn btnSkill btn-outline-gol btnGol btn-sm"> Gol
+            class="btn btnSkill btn-outline-gol btnGol "> Gol
           </button>
         </div>
         <div class="topMargin bottomMargin">
           <button type="button" id="warning-1012" onclick="tempo(this, 'warning', 1012, 8,true)"
-            class="btn btnSkill btn-outline-warning btnWarning btn-sm">Tiro dei meta</button>
+            class="btn btnSkill btn-outline-warning btnWarning ">Tiro dei meta</button>
         </div>
       </div>
     </div>
@@ -446,9 +446,9 @@
       <div class="col-12 text-center">
         <div class="topMargin">
           <button type="button" id="btnBolaParada" onclick="tempo(this, 'danger', 0, 9,true)"
-            class="btn btnSkill btnDanger btn-outline-danger btn-sm">Jogo parado</button>
+            class="btn btnSkill btnDanger btn-outline-danger ">Jogo parado</button>
           <button type="button" id="btnBolaRolando" onclick="tempo(this, 'success', 0, 10,true)"
-            class="btn btnSkill btnSuccess btn-outline-success btn-sm">Bola rolando</button>
+            class="btn btnSkill btnSuccess btn-outline-success ">Bola rolando</button>
         </div>
       </div>
     </div>
