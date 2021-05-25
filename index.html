@@ -40,12 +40,17 @@
       top: 1px;
     }
 
-    .btn-outline-substituition {
+    .btn-outline-substituicao {
       color: #b23cfd;
       border-color: #b23cfd;
     }
 
-    .btn-outline-substituition:hover {
+    .btn-outline-substituicao:hover {
+      background-color: #b23cfd;
+      color: white
+    }
+
+    .btn-substituicao {
       background-color: #b23cfd;
       color: white
     }
@@ -60,122 +65,415 @@
       color: white
     }
 
-    .btn{
-      width:130px;
+    .btn-lateral {
+      background-color: #b708c4;
+      color: white
+    }
+
+    .btn-outline-gol {
+      color: #41fc03;
+      border-color: #41fc03;
+    }
+
+    .btn-gol {
+      background-color: #41fc03;
+      color: white
+    }
+
+    .btn-outline-gol:hover {
+      background-color: #41fc03;
+      color: white
+    }
+
+    .btn-outline-penalti {
+      color: #ff7605;
+      border-color: #ff7605;
+    }
+
+    .btn-penalti {
+      background-color: #ff7605;
+      color: white
+    }
+
+    .btn-outline-penalti:hover {
+      background-color: #ff7605;
+      color: white
+    }
+
+    .btnSkill {
+      width: 130px;
     }
   </style>
 </head>
 
 <script>
+  /* Skills
+1 VAR	 
+2 Falta	
+3 Lateral	
+4 Pênalti	
+5 Escanteio	
+6 Substituição	
+7 Gol	
+8 Tiro de Meta	
+9 Jogo Parado	
+10 Bola rolando	*/
+  const skills = [{id:1, skill:'VAR'},{id:2, skill:'Falta'},{id:3, skill:'Lateral'},{id:4, skill:'Pênalti'},
+  {id:5, skill:'Escanteio'},{id:6, skill:'Substituição'},{id:7, skill:'Gol'},{id:8, skill:'Tiro de meta'},{id:9, skill:'Jogo parado'},{id:10, skill:'Bola rolando'}];
   var intervalo;
+  const idMatch = 189477;
+  const idChampionship = 729;
+  var segundos = 1;
+  var minutos = 0;
+  var segundosCorridos = 1;
 
-  function tempo(op) {
-    if (op == 1) {
-      document.getElementById('parar').style.display = "block";
-      document.getElementById('comeca').style.display = "none";
+
+  function savedCronometrados() {
+    var cronometro = localStorage.getItem("cronometro");
+    document.getElementById("segundo").innerHTML = "00" + "s";
+    document.getElementById("minuto").innerHTML = "00" +  "m";
+    if (cronometro) {
+      cronometro = JSON.parse(cronometro);
+      let savedList = localStorage.getItem("listaCronometrados") == null ? [] : JSON.parse(localStorage.getItem("listaCronometrados"));
+      savedList.push(cronometro);
+      localStorage.removeItem("cronometro");
+      localStorage.setItem("listaCronometrados", JSON.stringify(savedList));
+      segundos = 1;
+      minutos = 0;
+      window.clearInterval(intervalo);
+      segundosCorridos = 0;
     }
-    var s = 1;
-    var m = 0;
-    var h = 0;
+  }
+
+  function tempo(button, typeClass, team, skill, saveTime) {
+    changeClassButton(button, typeClass);
+
+    if (saveTime) {
+      savedCronometrados();
+    }
+    let id = new Date().getTime();
     intervalo = window.setInterval(function () {
-      if (s == 60) { m++; s = 0; }
-      if (m == 60) { h++; s = 0; m = 0; }
-      if (h < 10) document.getElementById("hora").innerHTML = "0" + h + "h"; else document.getElementById("hora").innerHTML = h + "h";
-      if (s < 10) document.getElementById("segundo").innerHTML = "0" + s + "s"; else document.getElementById("segundo").innerHTML = s + "s";
-      if (m < 10) document.getElementById("minuto").innerHTML = "0" + m + "m"; else document.getElementById("minuto").innerHTML = m + "m";
-      s++;
+      if (segundos == 60) { minutos++; segundos = 0; }
+      if (minutos == 60) {
+        segundos = 0;
+        minutos = 0;
+      }
+      if (segundos < 10) document.getElementById("segundo").innerHTML = "0" + segundos + "s"; else document.getElementById("segundo").innerHTML = segundos + "s";
+      if (minutos < 10) document.getElementById("minuto").innerHTML = "0" + minutos + "m"; else document.getElementById("minuto").innerHTML = minutos + "m";
+      segundos++;
+      segundosCorridos++;
+
+      var objeto = {
+        id,
+        idMatch,
+        skill,
+        team,
+        minutos,
+        segundos,
+        typeClass,
+        segundosCorridos
+      };
+
+      localStorage.setItem("cronometro", JSON.stringify(objeto));
     }, 1000);
   }
-  //window.onload=tempo;
 
-  function changeClassButton(button, typeClass) {
-    $(".btn").removeClass("btn-primary");
-    $(".btn").removeClass("btn-dark");
-    $(".btn").removeClass("btn-info");
-    $(".btn").removeClass("btn-warning");
-    $(".btn").removeClass("btn-success");
-    $(".btn").removeClass("btn-danger");
+  function getDataLocalDataBase() {
+    debugger;
+    var cronometro = localStorage.getItem("cronometro");
+    if (localStorage.cronometro) {
+      cronometro = JSON.parse(cronometro);
 
+      if (idMatch != cronometro.idMatch) {
+        return
+      }
+
+      if (cronometro.segundos < 10) document.getElementById("segundo").innerHTML = "0" + cronometro.segundos + "s"; else document.getElementById("segundo").innerHTML = cronometro.segundos + "s";
+      if (cronometro.minutos < 10) document.getElementById("minuto").innerHTML = "0" + cronometro.minutos + "m"; else document.getElementById("minuto").innerHTML = cronometro.minutos + "m";
+
+      let button;
+      if(cronometro.skill == 10){
+        button = $("#btnBolaRolando");
+      }else if(cronometro.skill == 9){
+        button = $("#btnBolaParada");
+      }else{
+        button = document.getElementById(cronometro.skill + "-" + cronometro.team);
+      }
+     
+      minutos = cronometro.minutos;
+      segundos = cronometro.segundos;
+      tempo(button, cronometro.typeClass, cronometro.team, cronometro.skill);
+    }
+  }
+
+  function listeningCronometrados() {
+
+    window.setInterval(function () {
+      if (localStorage.getItem("listaCronometrados") == null) return;
+      const list = JSON.parse(localStorage.getItem("listaCronometrados"));
+
+      let cronometrados =
+      {
+        "idMatch": 180000,
+        idChampionship,
+        "coletados": []
+      };
+      
+      $("#myTable tbody").after("<tr> <td>1</td>  <td>VAR</td>  <td> 10000</td> </tr>");
+      $("#myTable tbody").after("<tr> <td>1</td>  <td>VAR</td>  <td> 2000</td> </tr>");
+      
+      list.forEach(element => {
+        let item = {
+          idGameTime: localStorage.idGameTime,
+          skill: element.skill,
+          timeInSeconds: element.segundosCorridos,
+          idTeam: element.team
+        };
+        let skill = skills.find(x => x.id === element.skill).skill;
+        $("#myTable tbody").after("<tr> <td>"+ element.team +"</td>  <td>"+skill+"</td>  <td>"+element.segundosCorridos+"</td> </tr>");
+        cronometrados.coletados.push(item);
+      });
+      $.ajax({
+        url: 'https://demo4001998.mockable.io/cronometro',
+        data: JSON.stringify(cronometrados),
+        type: "POST",
+        dataType: 'JSON',
+        contentType: "application/json",
+        success: function (result) {
+          console.log(result);
+          console.log("enviado com sucesso");
+          localStorage.removeItem("listaCronometrados");
+        },
+        error: function (passParams) {
+          alert("Ocorreu um erro ao tentar salvar as informações. Por favor, entre em contato com a TI");
+        }
+      });
+
+    }, 20000);
+  }
+
+  function controlTime(idGameTime) {
+    switch (idGameTime) {
+      case "10":
+        $("#btnTempo").val("Iniciar a partida");
+        $("#btnTempo").addClass("btn-success");
+        break;
+      case "2":
+        $("#btnTempo").val("Finalizar 1° tempo");
+        $("#btnTempo").removeClass("btn-success");
+        $("#btnTempo").addClass("btn-danger");
+        break;
+      case "3":
+        $("#btnTempo").addClass("btn-success");
+        $("#btnTempo").removeClass("btn-danger");
+        $("#btnTempo").val("Iniciar 2° tempo");
+        break;
+      case "4":
+        $("#btnTempo").val("Finalizar 2° tempo");
+        $("#btnTempo").removeClass("btn-success");
+        $("#btnTempo").addClass("btn-danger");
+        break;
+      case "11":
+        $("#btnTempo").attr("disabled", true);
+        $("#btnTempo").removeClass("btn-success");
+        $("#btnTempo").removeClass("btn-danger");
+        $("#btnTempo").addClass("btn-info");
+        $("#btnTempo").val("Fim de jogo");
+        $(".btnSkill").attr("disabled", true);
+        break;
+    }
+  }
+
+  function changeGameTime() {
+    cleanScreen();
+    switch (localStorage.idGameTime) {
+      case "10":
+        controlTime("2");
+        button = $("#btnBolaRolando")
+        tempo(button, 'success', 0, 10, false);
+        localStorage.idGameTime = 2;
+        break;
+      case "2":
+        controlTime("3");
+        savedCronometrados();
+        localStorage.idGameTime = 3;
+        break;
+      case "3":
+        controlTime("4");
+        savedCronometrados();
+        localStorage.idGameTime = 4;
+        tempo(button, 'success', 0, 10, false);
+        break;
+      case "4":
+        controlTime("11");
+        savedCronometrados();
+        localStorage.idGameTime = 11;
+        break;
+    }
+    
+  }
+
+  function initialize() {
+
+
+    
+    getDataLocalDataBase();
+    listeningCronometrados();
+    localStorage.idGameTime = 10;
+    controlTime(localStorage.idGameTime);
+  }
+
+  window.onload = initialize;
+
+  function disabledButton(){
+    $(".btnSkill").attr("disabled", true);
+  }
+
+  function cleanScreen(){
+    $(".btnSkill").removeClass("btn-primary");
+    $(".btnSkill").removeClass("btn-dark");
+    $(".btnSkill").removeClass("btn-info");
+    $(".btnSkill").removeClass("btn-warning");
+    $(".btnSkill").removeClass("btn-success");
+    $(".btnSkill").removeClass("btn-danger");
+    $(".btnSkill").removeClass("btn-gol");
+    $(".btnSkill").removeClass("btn-lateral");
+    $(".btnSkill").removeClass("btn-penalti");
+    $(".btnSkill").removeClass("btn-substituicao");
     $(".btnPrimary").addClass("btn-outline-primary");
     $(".btnDark").addClass("btn-outline-dark");
     $(".btnInfo").addClass("btn-outline-info");
     $(".btnWarning").addClass("btn-outline-warning");
     $(".btnSuccess").addClass("btn-outline-success");
     $(".btnDanger").addClass("btn-outline-danger");
+    $(".btnGol").addClass("btn-outline-gol");
+    $(".btnLateral").addClass("btn-outline-lateral");
+    $(".btnPenalti").addClass("btn-outline-penalti");
+    $(".btnSubstituicao").addClass("btn-outline-substituicao");
+    $("#btnBolaRolando").addClass();
+  }
 
+  function changeClassButton(button, typeClass) {
+    cleanScreen();
     $(button).addClass("btn-" + typeClass);
     $(button).removeClass("btn-outline-" + typeClass);
   }
 </script>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 text-center">
-        Tempo de jogo <span id="hora">00h</span><span id="minuto">00m</span><span id="segundo">00s</span><br>
+  <div class="container">
+    <div class="row topMargin">
+      <div class="col-6 text-center">
+        Cronometro <span id="minuto">00m</span><span id="segundo">00s</span><br>
+      </div>
+      <div class="col-6">
+        <input type="button" onclick="changeGameTime()" id="btnTempo" class="btn  btn-sm " value="" />
       </div>
     </div>
-    <div class="row ">
-      <div class="col-6" style="border:1px solid gray">
+    <div class="row topMargin">
+      <div class="col-6 text-center" style="border:1px solid gray">
         <p> Parada com o São Paulo</p>
-        <button  type="button" onclick="changeClassButton(this, 'primary')"
-          class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
-       
-        
-          <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'dark')"
-            class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+        <button id="var-1007" type="button" onclick="tempo(this, 'primary', 1007, 1,true)"
+          class="btn btnSkill btnPrimary btn-outline-primary btn-sm ">VAR</button>
+        <div class="topMargin">
+          <button type="button" id="falta-1007" onclick="tempo(this, 'dark', 1007, 2,true)"
+            class="btn btnSkill btnDark btn-outline-dark btn-sm">Falta</button>
         </div>
         <div class="topMargin ">
-          <button type="button" class="btn btn-outline-info btn-outline-lateral btn-sm"> Lateral </button>
+          <button type="button" id="lateral-1007" onclick="tempo(this, 'lateral', 1007, 3,true)"
+            class="btn btnSkill btnLateral btn-outline-lateral btn-sm">
+            Lateral
+          </button>
         </div>
         <div class="topMargin">
-          <button type="button" class="btn btn-sm btn-outline-primary">Pênalti</button>
+          <button type="button" id="penalti-1007" onclick="tempo(this, 'penalti', 1007, 4,true)"
+            class="btn btnSkill btn-sm btnPenalti btn-outline-penalti">Pênalti</button>
         </div>
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'info')"
-            class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+          <button type="button" id="info-1007" onclick="tempo(this, 'info', 1007, 5,true)"
+            class="btn btnSkill btn-outline-info btnInfo btn-sm">Escanteio</button>
         </div>
         <div class="topMargin ">
-          <button type="button" class="btn btn-outline-substituition btn-sm"> Substituição </button>
+          <button type="button" id="substituicao-1007" onclick="tempo(this, 'substituicao', 1007, 6,true)"
+            class="btn btnSkill btn-outline-substituicao btnSubstituicao btn-sm"> Substituição </button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" id="gol-1007" onclick="tempo(this, 'gol', 1007, 7,true)"
+            class="btn btnSkill btn-outline-gol btnGol btn-sm"> Gol
+          </button>
         </div>
         <div class="topMargin bottomMargin">
-          <button type="button" onclick="changeClassButton(this, 'warning')"
-            class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+          <button type="button" id="warning-1007" onclick="tempo(this, 'warning', 1007, 8,true)"
+            class="btn btnSkill btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
         </div>
-
-     
-
       </div>
-      <div class="col-6" style="border:1px solid gray">
-        <p> Bola parada com Palmeiras</p>
-        <button type="button" onclick="changeClassButton(this, 'primary')"
-          class="btn btnPrimary btn-outline-primary btn-sm ">VAR</button>
+      <div class="col-6 text-center" style="border:1px solid gray">
+        <p> Parada com o Palmeiras</p>
+        <button id="var-1012" type="button" onclick="tempo(this, 'primary', 1012, 1,true)"
+          class="btn btnSkill btnPrimary btn-outline-primary btn-sm ">VAR</button>
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'dark')"
-            class="btn btnDark btn-outline-dark btn-sm">Falta</button>
+          <button type="button" id="falta-1012" onclick="tempo(this, 'dark', 1012, 2,true)"
+            class="btn btnSkill btnDark btn-outline-dark btn-sm">Falta</button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" id="lateral-1012" onclick="tempo(this, 'lateral', 1012, 3,true)"
+            class="btn btnSkill btnLateral btn-outline-lateral btn-sm">
+            Lateral
+          </button>
         </div>
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'info')"
-            class="btn btn-outline-info btnInfo btn-sm">Escanteio</button>
+          <button type="button" id="penalti-1012" onclick="tempo(this, 'penalti', 1012, 4,true)"
+            class="btn btnSkill btn-sm btnPenalti btn-outline-penalti">Pênalti</button>
+        </div>
+        <div class="topMargin">
+          <button type="button" id="info-1012" onclick="tempo(this, 'info', 1012, 5,true)"
+            class="btn btnSkill btn-outline-info btnInfo btn-sm">Escanteio</button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" id="substituicao-1012" onclick="tempo(this, 'substituicao', 1012, 6,true)"
+            class="btn btnSkill btn-outline-substituicao btnSubstituicao btn-sm"> Substituição </button>
+        </div>
+        <div class="topMargin ">
+          <button type="button" id="gol-1012" onclick="tempo(this, 'gol', 1012, 7,true)"
+            class="btn btnSkill btn-outline-gol btnGol btn-sm"> Gol
+          </button>
         </div>
         <div class="topMargin bottomMargin">
-          <button type="button" onclick="changeClassButton(this, 'warning')"
-            class="btn btn-outline-warning btnWarning btn-sm">Tiro de meta</button>
+          <button type="button" id="warning-1012" onclick="tempo(this, 'warning', 1012, 8,true)"
+            class="btn btnSkill btn-outline-warning btnWarning btn-sm">Tiro dei meta</button>
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-12 text-center">
         <div class="topMargin">
-          <button type="button" onclick="changeClassButton(this, 'danger')"
-            class="btn btnDanger btn-outline-danger btn-sm">Jogo parado</button>
-          <button type="button" onclick="changeClassButton(this, 'success')"
-            class="btn btnSuccess btn-outline-success btn-sm">Bola rolando</button>
+          <button type="button" id="btnBolaParada" onclick="tempo(this, 'danger', 0, 9,true)"
+            class="btn btnSkill btnDanger btn-outline-danger btn-sm">Jogo parado</button>
+          <button type="button" id="btnBolaRolando" onclick="tempo(this, 'success', 0, 10,true)"
+            class="btn btnSkill btnSuccess btn-outline-success btn-sm">Bola rolando</button>
         </div>
       </div>
+    </div>
+ 
+  <hr>
+
+  <div class="row" >
+    <div class="col-12 text-center">
+      <table id="myTable" border="1">
+        <thead>
+          <th>id</th>
+          <th>Motivo</th>
+          <th> Tempo em segundos</th>
+        </thead>
+    
+        <tbody>
+         
+        </tbody>
+      
+      </table>
     </div>
   </div>
+</div>
 </body>
 
 </html>
