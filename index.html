@@ -282,6 +282,7 @@
 
   function changeGameTime() {
     cleanScreen();
+    window.clearInterval(intervalo);
     switch (localStorage.idGameTime) {
       case "10":
         controlTime("2");
@@ -304,6 +305,7 @@
         controlTime("11");
         savedCronometrados();
         localStorage.idGameTime = 11;
+        
         break;
     }
     
