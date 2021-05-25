@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <style>
     .topMargin {
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .bottomMargin {
@@ -365,7 +365,7 @@
         Cronometro <span id="minuto">00m</span><span id="segundo">00s</span><br>
       </div>
       <div class="col-6">
-        <input type="button" onclick="changeGameTime()" id="btnTempo" class="btn  " value="" />
+        <input type="button" onclick="changeGameTime()" id="btnTempo" class="btn  btn-sm" value="" />
       </div>
     </div>
     <div class="row topMargin">
@@ -446,9 +446,9 @@
       <div class="col-12 text-center">
         <div class="topMargin">
           <button type="button" id="btnBolaParada" onclick="tempo(this, 'danger', 0, 9,true)"
-            class="btn btnSkill btnDanger btn-outline-danger ">Jogo parado</button>
+            class="btn btnSkill btnDanger btn-outline-danger btn-sm">Jogo parado</button>
           <button type="button" id="btnBolaRolando" onclick="tempo(this, 'success', 0, 10,true)"
-            class="btn btnSkill btnSuccess btn-outline-success ">Bola rolando</button>
+            class="btn btnSkill btnSuccess btn-outline-success btn-sm">Bola rolando</button>
         </div>
       </div>
     </div>
