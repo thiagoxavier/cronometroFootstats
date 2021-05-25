@@ -127,7 +127,6 @@
   var minutos = 0;
   var segundosCorridos = 1;
 
-
   function savedCronometrados() {
     var cronometro = localStorage.getItem("cronometro");
     document.getElementById("segundo").innerHTML = "00" + "s";
@@ -246,7 +245,7 @@
         }
       });
 
-    }, 20000);
+    }, 10000);
   }
 
   function controlTime(idGameTime) {
