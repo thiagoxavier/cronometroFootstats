@@ -251,21 +251,25 @@
       case "10":
         $("#btnTempo").val("Iniciar a partida");
         $("#btnTempo").addClass("btn-success");
+        $(".btnSkill").attr("disabled", true);
         break;
       case "2":
         $("#btnTempo").val("Finalizar 1° tempo");
         $("#btnTempo").removeClass("btn-success");
         $("#btnTempo").addClass("btn-danger");
+        $(".btnSkill").attr("disabled", false);
         break;
       case "3":
         $("#btnTempo").addClass("btn-success");
         $("#btnTempo").removeClass("btn-danger");
         $("#btnTempo").val("Iniciar 2° tempo");
+        $(".btnSkill").attr("disabled", true);
         break;
       case "4":
         $("#btnTempo").val("Finalizar 2° tempo");
         $("#btnTempo").removeClass("btn-success");
         $("#btnTempo").addClass("btn-danger");
+        $(".btnSkill").attr("disabled", false);
         break;
       case "11":
         $("#btnTempo").attr("disabled", true);
@@ -303,25 +307,21 @@
         controlTime("11");
         savedCronometrados();
         localStorage.idGameTime = 11;
-        
         break;
     }
     
   }
 
   function initialize() {
-
-
-    
+    controlTime(localStorage.idGameTime);
     getDataLocalDataBase();
     listeningCronometrados();
     localStorage.idGameTime = 10;
-    controlTime(localStorage.idGameTime);
   }
 
   window.onload = initialize;
 
-  function disabledButton(){
+  function disabledButton(able){
     $(".btnSkill").attr("disabled", true);
   }
 
@@ -450,9 +450,6 @@
         </div>
       </div>
     </div>
- 
-  <hr>
-
   <div class="row" >
     <div class="col-12 text-center">
       <table id="myTable" border="1">
