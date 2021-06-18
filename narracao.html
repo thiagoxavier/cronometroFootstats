@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            position: relative;
+            overflow: hidden;
+            background-color: #333;
+            padding: 3px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .topnav-centered a {
+            float: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        /* Responsive navigation menu (for mobile devices) */
+        @media screen and (max-width: 600px) {
+
+            .topnav a,
+            .topnav-right {
+                float: none;
+                display: block;
+            }
+
+            .topnav-centered a {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top navigation -->
+    <div class="topnav">
+        <!-- Centered link -->
+        <div class="topnav-centered">
+            <a href="#home" class="">
+                <div>
+                    <span id="minuto"
+                        style="padding:2px; border-radius: 5px;  font-size: 25px; font-weight: bold; ; color: white;">00</span>
+                    <span style="border-radius: 5px;  font-size: 25px; font-weight: bold; ">:</span>
+                    <span style="padding: 2px; font-size: 25px; font-weight: bold; color: white; border-radius: 5px;"
+                        id="segundo">00</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Left-aligned links (default) -->
+        <a href="#news" class="btn">Gather</a>
+
+        <!-- Right-aligned links -->
+        <div class="topnav-right">
+            <a href="#search" class="btn btn-success">Iniciar</a>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top:5px;">
+
+        <div class="row">
+            <div class="col-2">
+
+                <div class="card">
+                    <div class="card-header text-center"><img
+                            src="https://frontendapiapp.blob.core.windows.net/images/88x88/suecia.png" height="30">
+                        SUE
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-dark table-sm">
+                            <thead>
+                                <tr>
+                                    <th>NR</th>
+                                    <th>Jogador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Doe</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Moe</td>
+
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>NR</th>
+                                <th>Reservas</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-8" >
+             
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="#Impedimento @Jogador">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>T</th>
+                                <th>Min</th>
+                                <th>Ação</th>
+                                <th>Narração</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                               
+                                <td>
+                                    <select>
+                                        <option>1°T </option>
+                                        <option>2°T </option>
+                                    </select>
+                                </td>
+                                 <td><input type="text" size="3" value="10" /></td>
+                                <td>
+                                    <select>
+                                        <option>Impedimento </option>
+                                        <option>Cartão </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" size="70" value="Doe volta até o meio de campo para receber a bola" />
+                                </td>
+                              </tr>
+                                <tr>
+                               
+                                <td>
+                                    <select>
+                                        <option>1°T </option>
+                                        <option>2°T </option>
+                                    </select>
+                                </td>
+                                 <td><input type="text" size="3" value="10" /></td>
+                                <td>
+                                    <select>
+                                        <option>Impedimento </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" size="70" value="Doe volta até o meio de campo para receber a bola" />
+                                </td>
+                              </tr>
+                                <tr>
+                               
+                                <td>
+                                    <select>
+                                        <option>1°T </option>
+                                        <option>2°T </option>
+                                    </select>
+                                </td>
+                                 <td><input type="text" size="3" value="10" /></td>
+                                <td>
+                                    <select>
+                                        <option>Impedimento </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" size="70" value="Doe volta até o meio de campo para receber a bola" />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-2">
+
+                <div class="card">
+                    <div class="card-header text-center"><img
+                            src="https://frontendapiapp.blob.core.windows.net/images/88x88/slovakia.png" height="30">
+                        SVK
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-dark table-sm">
+                            <thead>
+                                <tr>
+                                    <th>NR</th>
+                                    <th>Jogador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Doe</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Moe</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Dooley</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>NR</th>
+                                <th>Reservas</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                              <tr class="table-danger">
+                                <td>1</td>
+                                <td>Moe</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
